@@ -13,8 +13,9 @@ lineWidth = 0
 for selected in list:
 	x, y = scribus.getPosition(selected)
 	width, height = scribus.getSize(selected)
-	rectangle = scribus.createRect(x-margin, y-margin, width+margin*2, height+margin*2)
-	scribus.setFillColor(fillColor, rectangle)
-	scribus.setLineShade(lineWidth, rectangle)
+	scribus.setFillColor(fillColor, selected)
+	scribus.setLineShade(lineWidth, selected)
+	scribus.setLineWidth(lineWidth, selected)
+	scribus.setLineTransparency(lineWidth, selected)
 	#scribus.setLineStyle(lineStyle, rectangle)
 	#scribus.setStrokeColor(strokeColor, rectangle)
