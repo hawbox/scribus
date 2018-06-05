@@ -1,12 +1,14 @@
+import scribus
+
 n = scribus.selectionCount()
 list = []
 for i in range(0,n):
-	list.append(getSelectedObject(i))
+	list.append(scribus.getSelectedObject(i))
 
 print(list)
 
 #deselectAll()
 for selected in list:
-	size = len(getAllText(selected))
-	selectText(0, size , selected)
-	setStyle("WASTE dialog", selected)
+	size = len(scribus.getAllText(selected))
+	scribus.selectText(0, size , selected)
+	scribus.setStyle("WASTE dialog", selected)
