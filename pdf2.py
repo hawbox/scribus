@@ -16,7 +16,6 @@ parser.add_argument("-p", help="the page range to process as x,y,a-b,e...")
 args, unknown = parser.parse_known_args()
 
 os.chdir(args.d)
-print("5555555555555555555555555555")
 print(os.getcwd())
 print(glob.glob("*.sla"))
 for slaFileName in glob.glob("*.sla"):
@@ -26,7 +25,7 @@ for slaFileName in glob.glob("*.sla"):
 			file = open("segments.txt", "r")
 			args.p = file.readline().replace(" ", ",")
 			file.close()
-		else: args.p = ",".join(str(x) for x in range(1, pageCount()+1))
+		else: args.p = "1-" + str(pageCount())
 	elif not os.path.isfile("segments.txt"):
 		file = open("segments.txt", "w")
 		file.write(args.p.replace(",", " "))
