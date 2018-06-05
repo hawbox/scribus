@@ -20,16 +20,16 @@ print("5555555555555555555555555555")
 print(os.getcwd())
 print(glob.glob("*.sla"))
 for slaFileName in glob.glob("*.sla"):
-    scribus.openDoc(slaFileName)    
+	scribus.openDoc(slaFileName)	
 	if not args.p:
 		if os.path.isfile("segments.txt"):
 			file = open("segments.txt", "r")
 			args.p = file.readline().replace(" ", ",")
 			file.close()
-		else: args.p = range(1, pageCount()+1)
+		else: args.p = ",".join(str(x) for x in range(1, pageCount()+1))
 	elif not os.path.isfile("segments.txt"):
 		file = open("segments.txt", "w")
-		file.write(args.p.replace(",", " ")
+		file.write(args.p.replace(",", " "))
 		file.close()
 	for scroll in args.p.split(","):
 		print("scroll: " + scroll)
@@ -37,9 +37,8 @@ for slaFileName in glob.glob("*.sla"):
 		pdf.file = os.path.splitext(slaFileName)[0] + "_" + scroll + ".pdf"
 		pdf.binding = 1 #RIGHT TO LEFT
 		pdf.compress = True
-		# if args.p:
-			# pdf.pages = constants.listString(scroll)
-			# pdf.pages.sort()
+		pdf.pages = constants.listString(scroll)
+		pdf.pages.sort()
 		pdf.compressmtd = 3 #NONE
 		pdf.resolution = 300
 		print("############################################")
