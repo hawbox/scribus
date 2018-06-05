@@ -13,16 +13,6 @@ parser.add_argument("-p", help="the page range to process as x,y,a-b,e...")
 
 args, unknown = parser.parse_known_args()
 
-print("############################################")
-print(args)
-print("############################################")
-
-"""
-print("step: " + args.s)
-print("directory: " + args.d)
-print("file: " + args.file)
-print("pages: " + args.p)
-"""
 os.chdir(args.d)
   
 for slaFileName in glob.glob("*.sla"):
