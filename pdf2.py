@@ -21,13 +21,13 @@ print(glob.glob("*.sla"))
 for slaFileName in glob.glob("*.sla"):
 	scribus.openDoc(slaFileName)	
 	if not args.p:
-		if os.path.isfile("segments.txt"):
-			file = open("segments.txt", "r")
+		if os.path.isfile("sequence.txt"):
+			file = open("sequence.txt", "r")
 			args.p = file.readline().replace(" ", ",")
 			file.close()
 		else: args.p = "1-" + str(pageCount())
-	elif not os.path.isfile("segments.txt"):
-		file = open("segments.txt", "w")
+	elif not os.path.isfile("sequence.txt"):
+		file = open("sequence.txt", "w")
 		file.write(args.p.replace(",", " "))
 		file.close()
 	for scroll in args.p.split(","):
