@@ -23,7 +23,7 @@ for slaFileName in glob.glob("*.sla"):
 	if not args.p:
 		if os.path.isfile("sequence.txt"):
 			file = open("sequence.txt", "r")
-			args.p = file.readline().replace(" ", ",")
+			args.p = file.readline().replace(" ", ",").strip()
 			file.close()
 		else: args.p = "1-" + str(pageCount())
 	elif not os.path.isfile("sequence.txt"):
@@ -33,7 +33,7 @@ for slaFileName in glob.glob("*.sla"):
 	for scroll in args.p.split(","):
 		print("scroll: " + scroll)
 		pdf = scribus.PDFfile()
-		pdf.file = os.path.splitext(slaFileName)[0] + "_" + scroll + ".pdf"
+		pdf.file = os.path.splitext(slaFileName)[0] + "_" + constants.zfillParamString(scroll, 2) + ".pdf"
 		pdf.binding = 1 #RIGHT TO LEFT
 		pdf.compress = True
 		pdf.pages = constants.listString(scroll)
