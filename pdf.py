@@ -33,7 +33,7 @@ for scroll in args.s.split(","):
     pdf.compressmtd = 3 #NONE
     if args.p:
         pdf.pages = constants.listString(args.p)
-    pdf.pages.sort()
+        pdf.pages.sort()
     pdf.resolution = 300
     print("############################################")
     print(scroll + " printing pages: " + str(pdf.pages))
