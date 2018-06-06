@@ -8,6 +8,7 @@ if os.name == "nt":
 	sys.path.append(addMe)
 import pyManga.constants2 as constants
 import argparse
+from os.path import splitext
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-d", required=True, help="the directory the file is in")
@@ -33,7 +34,7 @@ for slaFileName in glob.glob("*.sla"):
 	for scroll in args.p.split(","):
 		print("scroll: " + scroll)
 		pdf = scribus.PDFfile()
-		pdf.file = slaFileName + "_p" + constants.zfillParamString(scroll, 2) + ".pdf"
+		pdf.file = splitext(slaFileName)[0] + "_p" + constants.zfillParamString(scroll, 2) + ".pdf"
 		pdf.binding = 1 #RIGHT TO LEFT
 		pdf.compress = True
 		pdf.pages = constants.listString(scroll)
