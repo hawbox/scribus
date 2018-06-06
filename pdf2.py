@@ -10,8 +10,9 @@ import pyManga.constants2 as constants
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-d", help="the directory the file is in")
+parser.add_argument("-d", required=True, help="the directory the file is in")
 parser.add_argument("-p", help="the page range to process as x,y,a-b,e...")
+parser.add_argument("-n", required=True, help="the base name of the pdf to produce. if not given, the name of the folder will be used")
 
 args, unknown = parser.parse_known_args()
 
@@ -33,7 +34,7 @@ for slaFileName in glob.glob("*.sla"):
 	for scroll in args.p.split(","):
 		print("scroll: " + scroll)
 		pdf = scribus.PDFfile()
-		pdf.file = os.path.splitext(slaFileName)[0] + "_" + constants.zfillParamString(scroll, 2) + ".pdf"
+		pdf.file = args.n + "_p" + constants.zfillParamString(scroll, 2) + ".pdf"
 		pdf.binding = 1 #RIGHT TO LEFT
 		pdf.compress = True
 		pdf.pages = constants.listString(scroll)
